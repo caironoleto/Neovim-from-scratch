@@ -56,6 +56,7 @@ return packer.startup(function(use)
 
 	-- Colorschemes
   use { "flazz/vim-colorschemes" }
+  use { "catppuccin/nvim", as = "catppuccin" }
 
 	-- Completion
   use { "hrsh7th/nvim-cmp" } -- The completion plugin
@@ -72,6 +73,10 @@ return packer.startup(function(use)
   use { "neovim/nvim-lspconfig" }
   use { "onsails/lspkind-nvim" }
   use { "mhanberg/elixir.nvim", requires = { "nvim-lua/plenary.nvim" } }
+
+  -- Python related
+  use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
+  use { "jeetsukumaran/vim-pythonsense", ft = { "python" } }
 
   -- Syntax Highlight
   use { "elixir-editors/vim-elixir" }
