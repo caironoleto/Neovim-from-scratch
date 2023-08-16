@@ -83,6 +83,7 @@ require'lspconfig'.elixirls.setup{
   };
 }
 
+-- Configure pylsp as the LSP server for Python.
 require("lspconfig").pylsp.setup{
   settings = {
     pylsp = {
@@ -93,4 +94,11 @@ require("lspconfig").pylsp.setup{
       }
     }
   }
+}
+
+-- Configure tsserver as the LSP server for TypeScript.
+require("lspconfig").tsserver.setup{
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
 }
