@@ -85,6 +85,8 @@ require'lspconfig'.elixirls.setup{
 
 -- Configure pylsp as the LSP server for Python.
 require("lspconfig").pylsp.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     pylsp = {
       plugins = {
@@ -98,7 +100,17 @@ require("lspconfig").pylsp.setup{
 
 -- Configure tsserver as the LSP server for TypeScript.
 require("lspconfig").tsserver.setup{
+  capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
+}
+
+-- Configure solargraph as the LSP server for Ruby.
+require'lspconfig'.solargraph.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = {
+	  debounce_text_changes = 150,
+	}
 }
