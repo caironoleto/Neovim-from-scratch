@@ -73,7 +73,7 @@ return packer.startup(function(use)
 	-- LSP
   use { "neovim/nvim-lspconfig" }
   use { "onsails/lspkind-nvim" }
-  use { "mhanberg/elixir.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" }})
 
   -- Python related
   use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
