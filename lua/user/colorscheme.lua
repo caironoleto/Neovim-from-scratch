@@ -21,17 +21,4 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
 vim.opt.list = true
 
-require("indent_blankline").setup {
-  space_char_blankline = " ",
-  show_current_context = true,
-  show_current_context_start = true,
-  show_end_of_line = true,
-  -- char_highlight_list = {
-  --   "IndentBlanklineIndent1",
-  --   "IndentBlanklineIndent2",
-  --   "IndentBlanklineIndent3",
-  --   "IndentBlanklineIndent4",
-  --   "IndentBlanklineIndent5",
-  --   "IndentBlanklineIndent6",
-  -- },
-}
+require("ibl").setup()
