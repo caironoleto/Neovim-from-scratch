@@ -75,33 +75,33 @@ require("elixir").setup({
 })
 
 -- Configure pylsp as the LSP server for Python.
-require("lspconfig").pylsp.setup{
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          maxLineLength = 120
-        }
-      }
-    }
-  }
-}
+-- require("lspconfig").pylsp.setup{
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = {
+--           maxLineLength = 120
+--         }
+--       }
+--     }
+--   }
+-- }
 
 -- Configure tsserver as the LSP server for TypeScript.
-require("lspconfig").tsserver.setup{
-  capabilities = capabilities,
-  on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-}
-
--- Configure solargraph as the LSP server for Ruby.
-require'lspconfig'.solargraph.setup{
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = {
-	  debounce_text_changes = 150,
-	}
-}
+-- require("lspconfig").tsserver.setup{
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+--   cmd = { "typescript-language-server", "--stdio" },
+-- }
+--
+-- -- Configure solargraph as the LSP server for Ruby.
+-- require'lspconfig'.solargraph.setup{
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   flags = {
+-- 	  debounce_text_changes = 150,
+-- 	}
+-- }
