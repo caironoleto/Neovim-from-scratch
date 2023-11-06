@@ -68,11 +68,20 @@ local on_attach = function(_, bufnr)
 end
 
 -- Configure ElixirLS as the LSP server for Elixir.
-require("elixir").setup({
-  nextls = {enable = true},
-  credo = {enable = true},
-  elixirls = {enable = true},
-})
+require'lspconfig'.elixirls.setup{
+  cmd = { "/opt/homebrew/Cellar/elixir-ls/0.13.0/libexec/language_server.sh" },
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  elixirLS = {
+    dialyzerEnabled = true,
+    fetchDeps = false,
+    enableTestLenses = true,
+    suggestSpecs = false,
+  };
+}
 
 -- Configure pylsp as the LSP server for Python.
 -- require("lspconfig").pylsp.setup{
