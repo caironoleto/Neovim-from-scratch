@@ -69,7 +69,7 @@ end
 
 -- Configure ElixirLS as the LSP server for Elixir.
 require'lspconfig'.elixirls.setup{
-  cmd = { "/opt/homebrew/Cellar/elixir-ls/0.13.0/libexec/language_server.sh" },
+  cmd = { "/opt/homebrew/Cellar/elixir-ls/0.17.7/libexec/language_server.sh" },
   capabilities = capabilities,
   on_attach = on_attach,
   flags = {
