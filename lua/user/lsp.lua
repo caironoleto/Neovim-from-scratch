@@ -1,6 +1,7 @@
 -- Add additional capabilities supported by nvim-cmp
 local nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = nvim_lsp.default_capabilities()
+local elixir_ls_sh = "/opt/homebrew/Cellar/elixir-ls/0.17.10/libexec/language_server.sh"
 
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
@@ -69,7 +70,7 @@ end
 
 -- Configure ElixirLS as the LSP server for Elixir.
 require'lspconfig'.elixirls.setup{
-  cmd = { "/opt/homebrew/Cellar/elixir-ls/0.17.7/libexec/language_server.sh" },
+  cmd = { elixir_ls_sh },
   capabilities = capabilities,
   on_attach = on_attach,
   flags = {
