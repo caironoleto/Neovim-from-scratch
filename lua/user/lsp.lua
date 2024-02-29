@@ -1,7 +1,6 @@
 -- Add additional capabilities supported by nvim-cmp
 local nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = nvim_lsp.default_capabilities()
-local elixir_ls_sh = "/opt/homebrew/Cellar/elixir-ls/0.17.10/libexec/language_server.sh"
 
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
@@ -69,6 +68,8 @@ local on_attach = function(_, bufnr)
 end
 
 -- Configure ElixirLS as the LSP server for Elixir.
+
+local elixir_ls_sh = "/opt/homebrew/opt/elixir-ls/libexec/language_server.sh"
 require'lspconfig'.elixirls.setup{
   cmd = { elixir_ls_sh },
   capabilities = capabilities,
@@ -81,7 +82,16 @@ require'lspconfig'.elixirls.setup{
     fetchDeps = false,
     enableTestLenses = true,
     suggestSpecs = false,
-  };
+  },
+}
+
+-- Configure solargraph as the LSP server for Ruby.
+require'lspconfig'.solargraph.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = {
+	  debounce_text_changes = 150,
+	}
 }
 
 -- Configure pylsp as the LSP server for Python.
@@ -107,11 +117,3 @@ require'lspconfig'.elixirls.setup{
 --   cmd = { "typescript-language-server", "--stdio" },
 -- }
 --
--- -- Configure solargraph as the LSP server for Ruby.
--- require'lspconfig'.solargraph.setup{
---   capabilities = capabilities,
---   on_attach = on_attach,
---   flags = {
--- 	  debounce_text_changes = 150,
--- 	}
--- }

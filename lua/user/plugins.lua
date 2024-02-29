@@ -44,7 +44,7 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use { "kyazdani42/nvim-web-devicons" }
+  use { "kyazdani42/nvim-web-devicons", branch = "master" }
   use { "kyazdani42/nvim-tree.lua" }
   use { "akinsho/bufferline.nvim" }
   use { "moll/vim-bbye" }
@@ -75,10 +75,6 @@ return packer.startup(function(use)
   use { "onsails/lspkind-nvim" }
   use { "mhanberg/elixir.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
-  -- Python related
-  use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
-  use { "jeetsukumaran/vim-pythonsense", ft = { "python" } }
-
   -- Syntax Highlight
   use { "elixir-editors/vim-elixir" }
 
@@ -97,6 +93,30 @@ return packer.startup(function(use)
       })
     end
   }
+
+  -- Python related
+  use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
+  use { "jeetsukumaran/vim-pythonsense", ft = { "python" } }
+
+  -- Ruby related
+  use { "melopilosyan/rspec-integrated.nvim" }
+
+  -- -- PHP Setup
+  -- use {
+  --   "gbprod/phpactor.nvim",
+  --   run = require("phpactor.handler.update"), -- To install/update phpactor when installing this plugin
+  --   requires = {
+  --     "nvim-lua/plenary.nvim", -- required to update phpactor
+  --     "neovim/nvim-lspconfig" -- required to automaticly register lsp serveur
+  --   },
+  --   config = function()
+  --     require("phpactor").setup({
+  --       -- your configuration comes here
+  --       -- or leave it empty to use the default settings
+  --       -- refer to the configuration section below
+  --     })
+  --   end
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
