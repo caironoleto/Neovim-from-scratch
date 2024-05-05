@@ -15,11 +15,11 @@ bufferline.setup {
     -- as an escape hatch for people who cannot bear it for whatever reason
 	indicator_icon = nil,
     indicator = { style = "icon", icon = "▎"},
-    buffer_close_icon = "",
+    buffer_close_icon = "󰅙",
     -- buffer_close_icon = '',
     modified_icon = "●",
-    close_icon = "",
-    -- close_icon = '',
+    close_icon = "󰅙",
+    -- close_icon = "x",
     left_trunc_marker = "",
     right_trunc_marker = "",
     --- name_formatter can be used to change the buffer's label in the bufferline.
@@ -34,7 +34,7 @@ bufferline.setup {
     end,
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-    tab_size = 40,
+    tab_size = 30,
     diagnostics = false, -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -64,7 +64,7 @@ bufferline.setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
+    separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = true,
     always_show_bufferline = true,
     -- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -82,11 +82,6 @@ bufferline.setup {
       bg = { attribute = "bg", highlight = "TabLine" },
     },
 
-    -- buffer_selected = {
-    --   fg = {attribute='fg',highlight='#ff0000'},
-    --   bg = {attribute='bg',highlight='#0000ff'},
-    --   gui = 'none'
-    --   },
     buffer_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
