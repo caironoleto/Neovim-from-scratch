@@ -55,6 +55,17 @@ return packer.startup(function(use)
   use { "folke/which-key.nvim" }
   use { "lukas-reineke/indent-blankline.nvim" }
 
+  -- Search
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    },
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end
+  }
+
 	-- Colorschemes
   use { "flazz/vim-colorschemes" }
   use { "catppuccin/nvim", as = "catppuccin" }
