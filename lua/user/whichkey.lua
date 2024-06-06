@@ -173,16 +173,38 @@ local mappings = {
   },
 
   t = {
-    name = "Terminal",
-    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    name = "Tests",
+    a = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop tests runner" },
+    s = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Show tests output" },
+    d = { '<cmd>lua require("neotest").run.run({ strategy = "dap" })<cr>', "Run debug test in nearest test" },
+    f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<cr>', "Run tests in current file" },
+    e = { "<cmd>lua require('neotest').run.run()<cr>", "Run nearest test" },
   },
 }
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+
+--     vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+--     vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+--     vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+--     vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+--     vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+--     vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+--     vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+--     vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+--     vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+--     vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+--       require('dap.ui.widgets').hover()
+--     end)
+--     vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+--       require('dap.ui.widgets').preview()
+--     end)
+--     vim.keymap.set('n', '<Leader>df', function()
+--       local widgets = require('dap.ui.widgets')
+--       widgets.centered_float(widgets.frames)
+--     end)
+--     vim.keymap.set('n', '<Leader>ds', function()
+--       local widgets = require('dap.ui.widgets')
+--       widgets.centered_float(widgets.scopes)
+--     end)

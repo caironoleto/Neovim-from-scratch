@@ -108,9 +108,6 @@ return packer.startup(function(use)
   -- Syntax Highlight
   use { "elixir-editors/vim-elixir" }
 
-  -- Telescope
-  use { "nvim-telescope/telescope.nvim" }
-
   -- Git
   use { "lewis6991/gitsigns.nvim" }
 
@@ -123,6 +120,27 @@ return packer.startup(function(use)
       })
     end
   }
+
+  -- Run tests inside neovim
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-python",
+      "mfussenegger/nvim-dap",
+      "mfussenegger/nvim-dap-python",
+      "theHamsta/nvim-dap-virtual-text",
+    }
+  }
+
+  -- Code Format
+  use { "stevearc/conform.nvim" }
+
+  -- Terminal inside neovim
+  use { "akinsho/toggleterm.nvim" }
 
   -- Python related
   use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
