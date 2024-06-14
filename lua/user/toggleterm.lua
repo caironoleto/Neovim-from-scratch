@@ -6,13 +6,15 @@ end
 toggleterm.setup {
   size = function(term)
     if term.direction == "horizontal" then
-      return 15
+      return 30
     elseif term.direction == "vertical" then
-      return vim.o.columns * 0.3
+      return vim.o.columns * 0.35
     end
   end,
   -- direction values: 'vertical' | 'horizontal' | 'tab' | 'float'
   direction = 'vertical',
-  hide_numbers = true,
+  start_in_insert = true,
+  insert_mappings = true,
+  terminal_mappings = true,
   open_mapping = [[<F12>]],
 }

@@ -140,7 +140,7 @@ return packer.startup(function(use)
   use { "stevearc/conform.nvim" }
 
   -- Terminal inside neovim
-  use { "akinsho/toggleterm.nvim" }
+  use { "akinsho/nvim-toggleterm.lua" }
 
   -- Python related
   use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
