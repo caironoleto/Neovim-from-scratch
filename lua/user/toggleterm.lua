@@ -18,3 +18,10 @@ toggleterm.setup {
   terminal_mappings = true,
   open_mapping = [[<F12>]],
 }
+
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+function _LAZYGIT_TOGGLE()
+	lazygit:toggle()
+end
