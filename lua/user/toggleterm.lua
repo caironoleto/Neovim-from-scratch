@@ -17,6 +17,7 @@ toggleterm.setup {
   insert_mappings = true,
   terminal_mappings = true,
   open_mapping = [[<F12>]],
+  hide_numbers = false,
 }
 
 local Terminal = require("toggleterm.terminal").Terminal
