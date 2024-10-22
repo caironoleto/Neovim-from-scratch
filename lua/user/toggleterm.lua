@@ -26,3 +26,15 @@ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "floa
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
+
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Toggleterm
+keymap("n", "<F11>", "<cmd>2ToggleTerm direction=vertical<cr>", opts)
+keymap("n", "<F10>", "<cmd>3ToggleTerm direction=horizontal<cr>", opts)
+keymap("n", "<F9>", "<cmd>4ToggleTerm direction=float<cr>", opts)
+keymap('t', '<C-ESC>', [[<C-\><C-n>]], opts)
+keymap("t", "jk", "<ESC>", opts)
+keymap("t", "kj", "<ESC>", opts)

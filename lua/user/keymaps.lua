@@ -39,6 +39,11 @@ keymap("n", "<C-Right>", "<C-w>l", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
+-- Move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", '"_dP', opts)
+
 -- Insert --
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
@@ -48,11 +53,6 @@ keymap("i", "kj", "<ESC>", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
-
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
@@ -64,18 +64,9 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- RSpec --
 keymap("n", "<leader>tI", "<cmd>lua require('rspec.integrated').run_spec_file()<cr>", { silent = true, noremap = true })
 
-
 -- Terminal --
 -- Better terminal navigation
 keymap("n", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("n", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("n", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("n", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- Toggleterm
-keymap("n", "<F11>", "<cmd>ToggleTerm direction=vertical<cr>", opts)
-keymap("n", "<F10>", "<cmd>ToggleTerm direction=horizontal<cr>", opts)
-keymap("n", "<F9>", "<cmd>ToggleTerm direction=float<cr>", opts)
-keymap('t', '<C-ESC>', [[<C-\><C-n>]], opts)
-keymap("t", "jk", "<ESC>", opts)
-keymap("t", "kj", "<ESC>", opts)
