@@ -53,8 +53,9 @@ return packer.startup(function(use)
   use { "lewis6991/impatient.nvim" }
   use { "goolord/alpha-nvim" }
   use { "folke/which-key.nvim" }
-  use { 'echasnovski/mini.icons', version = false }
+  use { "echasnovski/mini.icons", version = false }
   use { "lukas-reineke/indent-blankline.nvim" }
+  use { "tpope/vim-rails" }
 
   -- Search
   use {
@@ -146,9 +147,6 @@ return packer.startup(function(use)
   -- Python related
   use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
   use { "jeetsukumaran/vim-pythonsense", ft = { "python" } }
-
-  -- Ruby related
-  use { "melopilosyan/rspec-integrated.nvim" }
 
   -- -- PHP Setup
   -- use {
