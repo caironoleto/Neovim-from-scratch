@@ -44,11 +44,9 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use { "kyazdani42/nvim-web-devicons", branch = "master" }
   use { "kyazdani42/nvim-tree.lua" }
   use { "akinsho/bufferline.nvim" }
   use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" }
   use { "ahmedkhalf/project.nvim" }
   use { "lewis6991/impatient.nvim" }
   use { "goolord/alpha-nvim" }
@@ -56,6 +54,10 @@ return packer.startup(function(use)
   use { "echasnovski/mini.icons", version = false }
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "tpope/vim-rails" }
+
+  -- status line
+  use { "nvim-lualine/lualine.nvim" }
+  use 'nvim-tree/nvim-web-devicons'
 
   -- Search
   use {
@@ -79,6 +81,18 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-buffer" } -- buffer completions
   use { "hrsh7th/cmp-path" } -- path completions
   use { "hrsh7th/vim-vsnip" } -- snippet completions
+
+  -- AI
+  use {
+    'Exafunction/codeium.vim',
+    config = function ()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.g.codeium_no_map_tab = 1
+      vim.keymap.set('i', '<C-\\>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+    end
+  }
 
 	-- Snippets
   use { "L3MON4D3/LuaSnip" } --snippet engine
@@ -110,6 +124,7 @@ return packer.startup(function(use)
 
   -- Syntax Highlight
   use { "elixir-editors/vim-elixir" }
+  use { "slim-template/vim-slim" }
 
   -- Git
   use { "lewis6991/gitsigns.nvim" }
@@ -123,6 +138,19 @@ return packer.startup(function(use)
       })
     end
   }
+
+  -- Ruby debugger
+  -- use {
+  --   'kaka-ruto/nvim-ruby-debugger',
+  --   requires = {
+  --     'mfussenegger/nvim-dap',
+  --     'rcarriga/nvim-dap-ui',
+  --     'theHamsta/nvim-dap-virtual-text',
+  --   },
+  --   config = function()
+  --     require('nvim-ruby-debugger').setup()
+  --   end
+  -- }
 
   -- Run tests inside neovim
   use {
@@ -167,43 +195,43 @@ return packer.startup(function(use)
   -- }
 
   -- ChatGPT
-  use({
-    "jackMort/ChatGPT.nvim",
-      config = function()
-        require("chatgpt").setup({
-          keymaps = {
-            close = "<C-c>",
-            yank_last = "<C-y>",
-            yank_last_code = "<C-k>",
-            scroll_up = "<C-u>",
-            scroll_down = "<C-d>",
-            new_session = "<C-n>",
-            cycle_windows = "<Tab>",
-            cycle_modes = "<C-f>",
-            next_message = "<C-j>",
-            prev_message = "<C-k>",
-            select_session = "<C-Space>",
-            rename_session = "r",
-            delete_session = "d",
-            draft_message = "<C-r>",
-            edit_message = "e",
-            delete_message = "d",
-            toggle_settings = "<C-o>",
-            toggle_sessions = "<C-p>",
-            toggle_help = "<C-h>",
-            toggle_message_role = "<C-r>",
-            toggle_system_role_open = "<C-s>",
-            stop_generating = "<C-x>",
-          },
-        })
-      end,
-      requires = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "folke/trouble.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
-  })
+  -- use({
+  --   "jackMort/ChatGPT.nvim",
+  --     config = function()
+  --       require("chatgpt").setup({
+  --         keymaps = {
+  --           close = "<C-c>",
+  --           yank_last = "<C-y>",
+  --           yank_last_code = "<C-k>",
+  --           scroll_up = "<C-u>",
+  --           scroll_down = "<C-d>",
+  --           new_session = "<C-n>",
+  --           cycle_windows = "<Tab>",
+  --           cycle_modes = "<C-f>",
+  --           next_message = "<C-j>",
+  --           prev_message = "<C-k>",
+  --           select_session = "<C-Space>",
+  --           rename_session = "r",
+  --           delete_session = "d",
+  --           draft_message = "<C-r>",
+  --           edit_message = "e",
+  --           delete_message = "d",
+  --           toggle_settings = "<C-o>",
+  --           toggle_sessions = "<C-p>",
+  --           toggle_help = "<C-h>",
+  --           toggle_message_role = "<C-r>",
+  --           toggle_system_role_open = "<C-s>",
+  --           stop_generating = "<C-x>",
+  --         },
+  --       })
+  --     end,
+  --     requires = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "folke/trouble.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
