@@ -16,7 +16,15 @@ telescope.setup {
 
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { "truncate" },
+
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        preview_height = 0.7,
+        mirror = true,
+      },
+    },
 
     mappings = {
       i = {
@@ -122,6 +130,6 @@ telescope.setup {
       -- theme = "dropdown", -- use dropdown theme
       -- theme = { }, -- use own theme spec
       -- layout_config = { mirror=true }, -- mirror preview pane
-    }
+    },
   },
 }
