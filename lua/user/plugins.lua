@@ -99,26 +99,7 @@ return packer.startup(function(use)
   use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
 	-- LSP
-  use { "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim"
-    },
-    config = function()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-      require('mason').setup()
-      local mason_lspconfig = require 'mason-lspconfig'
-      mason_lspconfig.setup {
-        ensure_installed = { "pyright" }
-      }
-      require("lspconfig").pyright.setup {
-        capabilities = capabilities,
-      }
-    end
-
-  }
+  use { "neovim/nvim-lspconfig" }
   use { "onsails/lspkind-nvim" }
   use { "mhanberg/elixir.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
