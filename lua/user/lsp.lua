@@ -70,7 +70,7 @@ end
 -- Configure ElixirLS as the LSP server for Elixir.
 
 local elixir_ls_sh = "/opt/homebrew/opt/elixir-ls/libexec/language_server.sh"
-require'lspconfig'.elixirls.setup{
+vim.lsp.config('elixirls', {
   cmd = { elixir_ls_sh },
   capabilities = capabilities,
   on_attach = on_attach,
@@ -83,37 +83,53 @@ require'lspconfig'.elixirls.setup{
     enableTestLenses = true,
     suggestSpecs = false,
   },
-}
+})
 
 -- Configure solargraph as the LSP server for Ruby.
-require'lspconfig'.solargraph.setup{
+vim.lsp.config('ruby_lsp', {
+  cmd = { "ruby-lsp"},
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = { "ruby" },
   flags = {
 	  debounce_text_changes = 150,
 	}
-}
+})
+vim.lsp.enable('ruby_lsp')
 
--- Configure pylsp as the LSP server for Python.
--- require("lspconfig").pylsp.setup{
+-- vim.lsp.config('solargraph', {
+--   cmd = { "solargraph", "stdio"},
 --   capabilities = capabilities,
 --   on_attach = on_attach,
+--   filetypes = { "ruby" },
+--   flags = {
+-- 	  debounce_text_changes = 150,
+-- 	},
 --   settings = {
---     pylsp = {
---       plugins = {
---         pycodestyle = {
---           maxLineLength = 120
---         }
---       }
---     }
---   }
--- }
+--     solargraph = {
+--       diagnostics = true
+--     },
+--   },
+-- })
+-- vim.lsp.enable('solargraph')
 
--- Configure tsserver as the LSP server for TypeScript.
--- require("lspconfig").tsserver.setup{
+-- vim.lsp.config('rubocop', {
+--   cmd = { "rubocop", "--lsp"},
 --   capabilities = capabilities,
 --   on_attach = on_attach,
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
---   cmd = { "typescript-language-server", "--stdio" },
--- }
---
+--   filetypes = { "ruby" },
+--   flags = {
+-- 	  debounce_text_changes = 150,
+-- 	},
+-- })
+-- vim.lsp.enable('rubocop')
+
+-- vim.lsp.config('standardrb', {
+--   cmd = { "/home/cairo/.asdf/shims/standardrb", "--lsp"},
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   flags = {
+-- 	  debounce_text_changes = 150,
+-- 	}
+-- })
+-- vim.lsp.enable('standardrb')

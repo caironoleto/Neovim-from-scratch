@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use { "echasnovski/mini.icons", version = false }
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "tpope/vim-rails" }
+  use { "tpope/vim-surround" }
 
   -- status line
   use { "nvim-lualine/lualine.nvim" }

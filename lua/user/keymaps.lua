@@ -66,3 +66,7 @@ keymap("n", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("n", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("n", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("n", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- ć -> ç
+keymap('i', 'ć', 'ç', opts)
+keymap('i', 'Ć', 'Ç', opts)
