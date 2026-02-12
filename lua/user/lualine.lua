@@ -51,6 +51,30 @@ local branch = {
 	"branch",
 	icons_enabled = true,
 	icon = "",
+  fmt = function(display_string, context)
+    if #display_string > 20 then
+      return display_string:sub(1, 20) .. '...'
+    else
+      return display_string
+    end
+  end,
+}
+
+local lsp_status = {
+  'lsp_status',
+  icon = '', -- f013
+  symbols = {
+    -- Standard unicode symbols to cycle through for LSP progress:
+    spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+    -- Standard unicode symbol for when LSP is done:
+    done = '✓',
+    -- Delimiter inserted between LSP names:
+    separator = ' ',
+  },
+  -- List of LSP names to ignore (e.g., `null-ls`):
+  ignore_lsp = {},
+  -- Display the LSP name
+  show_name = true,
 }
 
 local searchcount = {
@@ -86,15 +110,15 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { branch },
-		lualine_b = { mode },
-		lualine_c = { filetype, searchcount, filename },
-		lualine_x = { diff, spaces, codeium },
+		lualine_b = { searchcount, filetype },
+		lualine_c = { filename },
+		lualine_x = { diff, spaces, lsp_status },
 	},
 	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = {},
-		lualine_x = { "location" },
+		lualine_a = { branch },
+		lualine_b = { searchcount, filetype },
+		lualine_c = { filename },
+		lualine_x = { diff, spaces, lsp_status },
 		lualine_y = {},
 		lualine_z = {},
 	},

@@ -1,9 +1,36 @@
 local opts = { noremap = true, silent = true }
+local resize_opts = { silent = true, noremap = true, nowait = true }
 
 local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+
+local function resize_mode()
+  print("Resize mode: ↑↓←→ | <Esc> to leave")
+
+  while true do
+    local key = vim.fn.getcharstr()
+
+    if key == "\027" then
+      break
+    elseif key == vim.keycode("<Up>") then
+      vim.cmd("resize +2")
+    elseif key == vim.keycode("<Down>") then
+      vim.cmd("resize -2")
+    elseif key == vim.keycode("<Right>") then
+      vim.cmd("vertical resize -2")
+    elseif key == vim.keycode("<Left>") then
+      vim.cmd("vertical resize +2")
+    else
+      break
+    end
+
+    vim.cmd("redraw")
+  end
+
+  print("")
+end
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -20,20 +47,28 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-Down>", "<C-w>j", opts)
-keymap("n", "<C-Up>", "<C-w>k", opts)
-keymap("n", "<C-Left>", "<C-w>h", opts)
-keymap("n", "<C-Right>", "<C-w>l", opts)
+keymap("n", "<cs-Down>", "<C-w>j", opts)
+keymap("n", "<cs-Up>", "<C-w>k", opts)
+keymap("n", "<cs-Left>", "<C-w>h", opts)
+keymap("n", "<cs-Right>", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<cs-Up>", ":resize +2<CR>", opts)
-keymap("n", "<cs-Down>", ":resize -2<CR>", opts)
-keymap("n", "<cs-Right>", ":vertical resize -2<CR>", opts)
-keymap("n", "<cs-Left>", ":vertical resize +2<CR>", opts)
+
+vim.keymap.set("n", "<Leader>r", resize_mode, { noremap = true, silent = true, desc = "Resize mode" })
+-- keymap("n", " <Up>", ":resize +2<CR>", resize_opts)
+-- keymap("n", " <Down>", ":resize -2<CR>", resize_opts)
+-- keymap("n", " <Right>", ":vertical resize -2<CR>", resize_opts)
+-- keymap("n", " <Left>", ":vertical resize +2<CR>", resize_opts)
+
+-- Navigate find files
+keymap("n", "<cs-p>", ":Telescope find_files<CR>", opts)
+keymap("n", "<cs-b>", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<CR>", opts)
+keymap("n", "<cs-f>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+
 
 -- Navigate buffers
--- keymap("n", "<S-l>", ":bnext<CR>", opts)
--- keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<cs-[>", ":bp<CR>", opts)
+keymap("n", "<cs-]>", ":bn<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)

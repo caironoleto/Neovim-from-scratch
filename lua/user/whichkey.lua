@@ -94,7 +94,7 @@ local mappings = {
   { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit", nowait = true, remap = false },
   { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
   { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
-  { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
+  { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line({full=true})<cr>", desc = "Blame", nowait = true, remap = false },
   { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
   { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk", nowait = true, remap = false },
   { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk", nowait = true, remap = false },
@@ -139,6 +139,8 @@ local mappings = {
   { "<leader>tf", '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<cr>', desc = "Run tests in current file", nowait = true, remap = false },
   { "<leader>ts", "<cmd>lua require('neotest').output.open({ enter = true })<cr>", desc = "Show tests output", nowait = true, remap = false },
   { "<leader>w", "<cmd>w!<CR>", desc = "Save", nowait = true, remap = false },
+  { "grd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Goto Definition", nowait = true, remap = false },
+  { "grD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Goto Declaration", nowait = true, remap = false },
 }
 
 which_key.setup(setup)
