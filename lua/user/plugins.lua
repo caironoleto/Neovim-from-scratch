@@ -43,7 +43,6 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use { "kyazdani42/nvim-tree.lua" }
   use { "akinsho/bufferline.nvim" }
   use { "moll/vim-bbye" }
@@ -158,6 +157,31 @@ return packer.startup(function(use)
   -- Python related
   use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
   use { "jeetsukumaran/vim-pythonsense", ft = { "python" } }
+
+  -- nvim-treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    run = ":TSUpdate",
+    config = function ()
+      local treesitter = require("nvim-treesitter")
+      treesitter.setup()
+      treesitter.install { 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'eex', 'python', 'heex', 'javascript', 'typescript', 'html', 'yaml' }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'typescript', 'html', 'yaml' },
+        callback = function()
+          -- syntax highlighting, provided by Neovim
+          vim.treesitter.start()
+          -- folds, provided by Neovim (I don't like folds)
+          -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          -- vim.wo.foldmethod = 'expr'
+          -- indentation, provided by nvim-treesitter
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end
+  }
 
   -- -- PHP Setup
   -- use {
